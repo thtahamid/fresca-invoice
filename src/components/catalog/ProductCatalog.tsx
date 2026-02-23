@@ -33,33 +33,33 @@ export function ProductCatalog({ onSelectProduct }: ProductCatalogProps) {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
         {filteredProducts.map((product) => (
           <Card 
             key={product.id} 
-            className="group hover:scale-105 transition-all duration-300 border-none shadow-pop hover:shadow-pop-hover rounded-3xl overflow-hidden cursor-pointer bg-card"
+            className="group hover:-translate-y-2 transition-all duration-500 border-none shadow-pop hover:shadow-pop-hover rounded-xl md:rounded-2xl overflow-hidden cursor-pointer bg-card flex flex-col border border-white/10"
             onClick={() => onSelectProduct(product)}
           >
-            <CardHeader className="bg-mint/30 dark:bg-mint/10 p-6">
+            <CardHeader className="bg-mint/40 dark:bg-mint/10 p-4 md:p-6 border-b border-black/5 dark:border-white/5">
               <div className="flex justify-between items-start gap-2">
-                <Badge variant="secondary" className="bg-sky/50 text-sky-foreground border-none px-3 py-1 rounded-full uppercase text-[10px] font-bold tracking-wider">
+                <Badge variant="secondary" className="bg-sky/50 text-sky-foreground border-none px-2 py-0.5 md:px-3 md:py-1 rounded-full uppercase text-[9px] md:text-[10px] font-bold tracking-wider">
                   {product.category}
                 </Badge>
               </div>
-              <CardTitle className="text-xl font-bold mt-4 line-clamp-2 leading-tight">
+              <CardTitle className="text-base md:text-xl font-bold mt-2 md:mt-4 line-clamp-2 leading-tight">
                 {product.name}
               </CardTitle>
             </CardHeader>
-            <CardContent className="p-6">
-              <p className="text-sm text-muted-foreground">
-                <span className="font-semibold block mb-1">Packaging:</span>
+            <CardContent className="p-4 md:p-6 flex-grow">
+              <p className="text-xs md:text-sm text-muted-foreground">
+                <span className="font-semibold block mb-0.5 md:mb-1">Packaging:</span>
                 {product.packagingType}
               </p>
             </CardContent>
-            <CardFooter className="px-6 pb-6 pt-0">
+            <CardFooter className="px-4 pb-4 md:px-6 md:pb-6 pt-0">
               <Button 
                 variant="ghost" 
-                className="w-full rounded-2xl bg-secondary hover:bg-primary hover:text-primary-foreground font-bold transition-all"
+                className="w-full rounded-xl md:rounded-2xl bg-secondary hover:bg-primary hover:text-primary-foreground font-bold transition-all text-sm md:text-base"
               >
                 Add to Invoice
               </Button>
@@ -69,8 +69,8 @@ export function ProductCatalog({ onSelectProduct }: ProductCatalogProps) {
       </div>
 
       {filteredProducts.length === 0 && (
-        <div className="text-center py-20 bg-muted/30 rounded-3xl border-2 border-dashed border-muted">
-          <p className="text-xl text-muted-foreground font-medium">No products found matching your search.</p>
+        <div className="text-center py-16 md:py-20 bg-muted/30 rounded-3xl border-2 border-dashed border-muted">
+          <p className="text-lg md:text-xl text-muted-foreground font-medium px-4">No products found matching your search.</p>
         </div>
       )}
     </div>

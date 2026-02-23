@@ -52,13 +52,16 @@
   --color-sky: oklch(0.95 0.05 220);
 
   --shadow-pop:
-    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-pop-hover: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+    0 8px 30px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-pop-hover: 0 20px 50px rgba(0, 0, 0, 0.18);
+
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 :root {
-  --radius: 1rem;
-  --background: oklch(0.98 0.01 240);
+  --radius: 0.75rem;
+  --background: oklch(0.96 0.015 240);
   --foreground: oklch(0.2 0.05 240);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.2 0.05 240);
@@ -81,6 +84,12 @@
   --chart-3: oklch(0.6 0.15 280);
   --chart-4: oklch(0.6 0.15 220);
   --chart-5: oklch(0.6 0.15 10);
+
+  @media (min-width: 768px) {
+    --shadow-pop:
+      0 15px 45px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-pop-hover: 0 30px 70px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .dark {
@@ -106,9 +115,44 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 transition-colors duration-200;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased selection:bg-primary/20;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tight;
+  }
+
+  /* Smooth Page Transitions */
+  .step-enter {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  .step-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: var(--transition-smooth);
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-card/80 backdrop-blur-xl border border-white/20 dark:border-white/5;
+  }
+
+  .text-responsive-h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-black;
+  }
+
+  .text-responsive-h2 {
+    @apply text-2xl md:text-3xl font-black;
   }
 }
