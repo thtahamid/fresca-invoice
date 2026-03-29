@@ -1,6 +1,5 @@
-@import "tailwindcss";
+@import "tailwindcss/index.css";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -51,8 +50,7 @@
   --color-peach: oklch(0.95 0.05 40);
   --color-sky: oklch(0.95 0.05 220);
 
-  --shadow-pop:
-    0 8px 30px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-pop: 0 8px 30px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-pop-hover: 0 20px 50px rgba(0, 0, 0, 0.18);
 
   --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
